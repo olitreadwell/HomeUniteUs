@@ -27,7 +27,7 @@
 - health endpoint area is quiet (no redesign talk, no in-flight PRs).
 
 ## Gap ledger (dedupe — READ FIRST, never re-pick)
-- 2026-09-05 self-found gap (health.py nginx error-log path) — outcome: pr-opened — literal `'{nginx_logs_dir}/nginx-error.log'` instead of f-string; verified + fixed + test added.
+- 2026-09-05 self-found gap (health.py nginx error-log path) — outcome: pr-opened (https://github.com/olitreadwell/HomeUniteUs/pull/2) — literal `'{nginx_logs_dir}'/nginx-error.log` instead of f-string; verified + fixed + test added; fork CI green
 
 ## Mined gaps (discovered, not yet attempted)
 - 2026-09-05 clean-code `backend/app/health.py` `nginx_logs` reads error log from literal path `{nginx_logs_dir}/nginx-error.log` (single quotes) instead of the f-string used for the access log; repro: call endpoint with `HUU_ENVIRONMENT` set and a real access log present -> `FileNotFoundError` on the literal path; expected: read from `/var/log/<env>.homeunite.us/nginx-error.log`; proposed test: monkeypatch `open`, assert both paths use the env dir; dedupe: no upstream issue/PR found — status: attempted (this run)
