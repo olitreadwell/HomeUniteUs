@@ -23,7 +23,7 @@ def nginx_logs(settings: SettingsDep):
     with open(f'{nginx_logs_dir}/nginx-access.log') as f:
         access_logs = f.read()
     
-    with open('{nginx_logs_dir}/nginx-error.log') as f:
+    with open(f'{nginx_logs_dir}/nginx-error.log') as f:
         error_logs = f.read()
 
     return JSONResponse(content={
